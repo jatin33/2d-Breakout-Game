@@ -55,8 +55,12 @@ function draw() {
     if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
-    if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+    if (y + dy < ballRadius) {
         dy = -dy;
+    } else if (y + dy > canvas.height - ballRadius) {
+        alert('Game Over');
+        document.location.reload(); //The Location.reload() method reloads the current resource, like the Refresh button
+        clearInterval(interval);
     }
     if (leftPressed && paddleX > 0) {
         paddleX -= 7;
@@ -67,4 +71,4 @@ function draw() {
     y += dy;
 }
 
-setInterval(draw, 10);
+let interval = setInterval(draw, 10);
