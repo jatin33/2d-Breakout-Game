@@ -58,9 +58,13 @@ function draw() {
     if (y + dy < ballRadius) {
         dy = -dy;
     } else if (y + dy > canvas.height - ballRadius) {
-        alert('Game Over');
-        document.location.reload(); //The Location.reload() method reloads the current resource, like the Refresh button
-        clearInterval(interval);
+        if (x > paddleX && x < paddleX + paddleWidth && y + ballRadius >= canvas.height - paddleHeight) {
+            dy = -dy;
+        } else {
+            alert('Game Over');
+            document.location.reload(); //The Location.reload() method reloads the current resource, like the Refresh button
+            clearInterval(interval);
+        }
     }
     if (leftPressed && paddleX > 0) {
         paddleX -= 7;
